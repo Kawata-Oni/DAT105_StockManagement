@@ -62,4 +62,17 @@ public abstract class Product {
     public void setProductMin(int newMin) {
         this.productMin = newMin;
     }
+
+    // others method
+    public void updateStatus() {
+        // ถ้า qty ปัจจุบันน้อยกว่า min
+        if (this.productQuantity <= this.productMin) {
+            this.productStatus = false; // สถานะเป็น False (ของหมด/ต้องสั่งเพิ่ม)
+        } else {
+            this.productStatus = true;  // สถานะเป็น True (ของยังมีพอขาย)
+        }
+    }
+
+    // abstract method
+    public abstract String toString();
 }
