@@ -20,4 +20,46 @@ public abstract class Product {
         this.productMax = productMax;
         this.productMin = productMin;
     }
+
+    // method getter
+    public String getProductId() {
+        return productId;
+    }
+    public String getProductName() {
+        return productName;
+    }
+    public double getProductPrice() {
+        return productPrice;
+    }
+    public int getProductQuantity() {
+        return productQuantity;
+    }
+    public int getProductMax() {
+        return productMax;
+    }
+    public int getProductMin() {
+        return productMin;
+    }
+    public boolean getProductStatus() {
+        return productStatus;
+    }
+
+    // method setter
+
+    public void setProductName(String newName) {
+        this.productName = newName;
+    }
+    public void setProductPrice(double newPrice) {
+        this.productPrice = newPrice;
+    }
+
+    public void setProductQuantity(int newQty) {
+        this.productQuantity = newQty;
+    }
+    public void setProductMax(int newMax) {
+        this.productMax = newMax;
+    }
+    public void setProductMin(int newMin) {
+        this.productMin = newMin;
+    }
 }
