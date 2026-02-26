@@ -61,7 +61,10 @@ public class MainWindowForm extends JFrame{
         btnDecrease.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Click Decrease");
+                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ");
+                if (id == null) return;
+                int qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter decreased quantity: "));
+                management.decreaseProductQuantity(id, qty);
             }
         });
 
