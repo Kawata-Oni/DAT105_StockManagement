@@ -63,15 +63,24 @@ public class AddWindowForm extends JFrame {
                 // เช็คว่าเลือกอะไร แล้วสร้าง obj ของสินค้าด้วย class นั้นๆ
                 // ส่ง String ของ category ที่เลือกเข้าไปเพื่อให้หน้าต่าง input รู้ว่าเลือกอะไรไป
                 if (choicePencil.isSelected()) {
-                    //
+                    InputBasicData inputForm = new InputBasicData("Pencil", mainWindow, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
+
                 } else if (choicePen.isSelected()) {
-                    //
+                    InputBasicData inputForm = new InputBasicData("Pen", mainWindow, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
+
                 } else if (choiceNotebook.isSelected()) {
-                    //
+                    InputBasicData inputForm = new InputBasicData("Notebook", mainWindow, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
+
                 } else if (choiceReportPaper.isSelected()) {
-                    //
+                    InputBasicData inputForm = new InputBasicData("Report Paper", mainWindow, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
+
                 } else if (choiceGeneral.isSelected()) {
-                    //
+                    InputBasicData inputForm = new InputBasicData("General Stationery", mainWindow, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
 
                 }
                 dispose();

@@ -20,12 +20,14 @@ public class InputBasicData extends JFrame {
     private Management management;
     private String productType;
     private MainWindowForm mainWindowForm;
+    private AddWindowForm addWindowForm;
 
     // contribute
-    public InputBasicData(String productType, MainWindowForm mainWindowForm, Management management) {
+    public InputBasicData(String productType, MainWindowForm mainWindowForm, Management management, AddWindowForm addWindowForm) {
         this.productType = productType;
         this.mainWindowForm = mainWindowForm;
         this.management = management;
+        this.addWindowForm = addWindowForm;
 
         setTitle("Input Basic Data" + productType);
         setContentPane(inputBasicData);
@@ -145,57 +147,57 @@ public class InputBasicData extends JFrame {
 
                 try {
                     if (productType.equals("Pencil")) {
-                        String color = JOptionPane.showInputDialog(this, "Enter Color:");
+                        String color = JOptionPane.showInputDialog(null, "Enter Color:");
                         if (color == null) return;
 
-                        String grade = JOptionPane.showInputDialog(this, "Enter Pencil Grade (e.g., HB, 2B):");
+                        String grade = JOptionPane.showInputDialog(null, "Enter Pencil Grade (e.g., HB, 2B):");
                         if (grade == null) return;
 
                         // สร้าง Object
                         newProduct = new Pencil(productId, productName, productPrice, productQuantity, productMax, productMin, color, grade);
                     } else if (productType.equals("Pen")) {
-                        String color = JOptionPane.showInputDialog(this, "Enter Color:");
+                        String color = JOptionPane.showInputDialog(null, "Enter Color:");
                         if (color == null) return;
 
-                        String tipSizeStr = JOptionPane.showInputDialog(this, "Enter Tip Size (e.g., 0.5):");
+                        String tipSizeStr = JOptionPane.showInputDialog(null, "Enter Tip Size (e.g., 0.5):");
                         if (tipSizeStr == null) return;
                         double tipSize = Double.parseDouble(tipSizeStr);
 
-                        String penType = JOptionPane.showInputDialog(this, "Enter Pen Type (e.g., Gel, Ballpoint):");
+                        String penType = JOptionPane.showInputDialog(null, "Enter Pen Type (e.g., Gel, Ballpoint):");
                         if (penType == null) return;
 
                         // สร้าง Object
                         newProduct = new Pen(productId, productName, productPrice, productQuantity, productMax, productMin, color, tipSize, penType);
                     } else if (productType.equals("Notebook")) {
-                        String size = JOptionPane.showInputDialog(this, "Enter Paper Size (e.g., A4, B5):");
+                        String size = JOptionPane.showInputDialog(null, "Enter Paper Size (e.g., A4, B5):");
                         if (size == null) return;
 
-                        String gsmStr = JOptionPane.showInputDialog(this, "Enter Paper GSM (e.g., 70, 80):");
+                        String gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):");
                         if (gsmStr == null) return;
                         int gsm = Integer.parseInt(gsmStr);
 
-                        String pagesStr = JOptionPane.showInputDialog(this, "Enter Number of Pages:");
+                        String pagesStr = JOptionPane.showInputDialog(null, "Enter Number of Pages:");
                         if (pagesStr == null) return;
                         int pages = Integer.parseInt(pagesStr);
 
                         // สร้าง Object
                         newProduct = new Notebook(productId, productName, productPrice, productQuantity, productMax, productMin, size, gsm, pages);
                     } else if (productType.equals("Report Paper")) {
-                        String size = JOptionPane.showInputDialog(this, "Enter Paper Size (e.g., A4):");
+                        String size = JOptionPane.showInputDialog(null, "Enter Paper Size (e.g., A4):");
                         if (size == null) return;
 
-                        String gsmStr = JOptionPane.showInputDialog(this, "Enter Paper GSM (e.g., 70, 80):");
+                        String gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):");
                         if (gsmStr == null) return;
                         int gsm = Integer.parseInt(gsmStr);
 
-                        String sheetsStr = JOptionPane.showInputDialog(this, "Enter Number of Sheets:");
+                        String sheetsStr = JOptionPane.showInputDialog(null, "Enter Number of Sheets:");
                         if (sheetsStr == null) return;
                         int sheets = Integer.parseInt(sheetsStr);
 
                         // สร้าง Object
                         newProduct = new ReportPaper(productId, productName, productPrice, productQuantity, productMax, productMin, size, gsm, sheets);
                     } else if (productType.equals("General Stationery")) {
-                        String statType = JOptionPane.showInputDialog(this, "Enter Stationery Type (e.g., Ruler, Eraser):");
+                        String statType = JOptionPane.showInputDialog(null, "Enter Stationery Type (e.g., Ruler, Eraser):");
                         if (statType == null) return;
 
                         // สร้าง Object
@@ -203,7 +205,7 @@ public class InputBasicData extends JFrame {
                     }
 
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(InputBasicData.this,
+                    JOptionPane.showMessageDialog(null,
                             "Invalid number format in extra details. Please try again.",
                             "Input Error",
                             JOptionPane.ERROR_MESSAGE);
@@ -214,7 +216,8 @@ public class InputBasicData extends JFrame {
                 if (newProduct != null) {
                     boolean isAdded = management.addProduct(newProduct);
                 }
-
+                dispose();
+                addWindowForm.dispose();
             }
         });
     }
