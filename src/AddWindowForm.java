@@ -39,16 +39,19 @@ public class AddWindowForm extends JFrame {
         group.add(choiceReportPaper);
         group.add(choiceGeneral);
 
-
+        // ปุ่ม cancel
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
+
+        // ปุ่ม confirm
         btnConfirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // เช็คว่าได้เลือกมั้ย
                 if (!choicePencil.isSelected() && !choicePen.isSelected() &&
                         !choiceNotebook.isSelected() && !choiceReportPaper.isSelected() &&
                         !choiceGeneral.isSelected()) {
@@ -56,6 +59,22 @@ public class AddWindowForm extends JFrame {
                     JOptionPane.showMessageDialog(null, "Please select an item!");
                     return;
                 }
+
+                // เช็คว่าเลือกอะไร แล้วสร้าง obj ของสินค้าด้วย class นั้นๆ
+                // ส่ง String ของ category ที่เลือกเข้าไปเพื่อให้หน้าต่าง input รู้ว่าเลือกอะไรไป
+                if (choicePencil.isSelected()) {
+                    //
+                } else if (choicePen.isSelected()) {
+                    //
+                } else if (choiceNotebook.isSelected()) {
+                    //
+                } else if (choiceReportPaper.isSelected()) {
+                    //
+                } else if (choiceGeneral.isSelected()) {
+                    //
+
+                }
+                dispose();
             }
         });
     }
