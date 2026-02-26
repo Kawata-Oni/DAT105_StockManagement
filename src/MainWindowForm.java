@@ -57,6 +57,8 @@ public class MainWindowForm extends JFrame{
                 if (id == null) return;
                 int qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter increased quantity: "));
                 management.increaseProductQuantity(id, qty);
+
+                updateTable();
             }
         });
 
@@ -68,6 +70,8 @@ public class MainWindowForm extends JFrame{
                 if (id == null) return;
                 int qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter decreased quantity: "));
                 management.decreaseProductQuantity(id, qty);
+
+                updateTable();
             }
         });
 

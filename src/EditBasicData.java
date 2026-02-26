@@ -85,6 +85,8 @@ public class EditBasicData extends JFrame {
                     // แก้ไขข้อมูล
                     management.editProduct(productId, nameStr, newPrice, newMin, newMax);
 
+                    mainWindowForm.updateTable();
+
                     dispose();
 
                 } catch (NumberFormatException ex) {
