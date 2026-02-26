@@ -1,4 +1,5 @@
 import Product.Management;
+import Product.Product;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -94,7 +95,26 @@ public class MainWindowForm extends JFrame{
         basicData.setModel(model);
     }
 
-    // Main Method
+    // ตั้งค่าข้อมูลในตาราง โดยดึงข้อม฿ลจาก ArrayList
+    public void updateTable() {
+        DefaultTableModel model = (DefaultTableModel) basicData.getModel();
+        model.setRowCount(0);
+
+        for (Product p : management.getProducts()) {
+            Object[] rowData = {
+                    p.getProductId(),
+                    p.getProductName(),
+                    p.getProductPrice(),
+                    p.getProductQuantity(),
+                    p.getProductMax(),
+                    p.getProductMin(),
+                    p.getProductStatus() ? "Available" : "Low Stock"
+            };
+            model.addRow(rowData);
+        }
+    }
+
+    // Main Method ============================================================================
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

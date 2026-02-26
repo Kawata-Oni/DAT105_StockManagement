@@ -1,6 +1,8 @@
 package Product;
 
 import javax.swing.*;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Management {
@@ -137,6 +139,14 @@ public class Management {
                             "\nCurrent Inventory: " + p.getProductQuantity() + " items",
                     "stock alert", JOptionPane.WARNING_MESSAGE);
         }
+    }
+
+    // กลุ่มทำงานกับตาราง ==============================================================
+
+    // ดึง ArrayList ออกมาทั้งก้อน
+    // ใช้เวลารัน loop เพื่อใส่ข้อมูลในตาราง
+    public ArrayList<Product> getProducts() {
+        return products;
     }
 }
 
