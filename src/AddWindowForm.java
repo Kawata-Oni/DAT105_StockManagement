@@ -1,14 +1,16 @@
 import Product.Management;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddWindowForm extends JFrame {
     private JButton btnConfirm;
     private JButton btnCancel;
     private JRadioButton choicePencil;
     private JRadioButton choicePen;
-    private JRadioButton ChoiceNotebook;
-    private JRadioButton ChoiceReportPaper;
+    private JRadioButton choiceNotebook;
+    private JRadioButton choiceReportPaper;
     private JRadioButton choiceGeneral;
     private JPanel add_form;
 
@@ -28,5 +30,33 @@ public class AddWindowForm extends JFrame {
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        // group JRadioButton
+        ButtonGroup group = new ButtonGroup();
+        group.add(choicePencil);
+        group.add(choicePen);
+        group.add(choiceNotebook);
+        group.add(choiceReportPaper);
+        group.add(choiceGeneral);
+
+
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        btnConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!choicePencil.isSelected() && !choicePen.isSelected() &&
+                        !choiceNotebook.isSelected() && !choiceReportPaper.isSelected() &&
+                        !choiceGeneral.isSelected()) {
+
+                    JOptionPane.showMessageDialog(null, "Please select an item!");
+                    return;
+                }
+            }
+        });
     }
 }
