@@ -72,7 +72,9 @@ public class MainWindowForm extends JFrame{
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Click Edit");
+                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ");
+                EditBasicData edit_form = new EditBasicData(MainWindowForm.this, management, id);
+                edit_form.setVisible(true);
             }
         });
 
