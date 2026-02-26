@@ -1,9 +1,11 @@
+import Product.Management;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainWindowForm {
+public class MainWindowForm extends JFrame{
 
     // attribute
     private JPanel main_form;
@@ -18,9 +20,12 @@ public class MainWindowForm {
 
     private JFrame frame;
 
-    // การทำงานใน Main
+    private Management management;
+
+    // constructor + การทำงานใน Main
     public MainWindowForm() {
         frame = new JFrame("Stock Management System");
+        management = new Management(); // สร้าง obj ของ Management เพื่อเชื่อมกับ ArrayList (Attribute ของ Management)
 
         setupTable();
 
@@ -36,7 +41,8 @@ public class MainWindowForm {
         btnAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Click Add");
+                AddWindowForm add_form = new AddWindowForm(MainWindowForm.this, management);
+                add_form.setVisible(true);
             }
         });
 
