@@ -215,9 +215,14 @@ public class InputBasicData extends JFrame {
                 // ถ้ามีข้อมูลใน newProduct ก็เพิ่มลง ArrayList
                 if (newProduct != null) {
                     boolean isAdded = management.addProduct(newProduct);
+
+                    if (isAdded) {
+                        mainWindowForm.updateTable();
+
+                        dispose();
+                        addWindowForm.dispose();
+                    }
                 }
-                dispose();
-                addWindowForm.dispose();
             }
         });
     }

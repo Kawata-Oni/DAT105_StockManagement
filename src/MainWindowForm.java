@@ -44,6 +44,8 @@ public class MainWindowForm extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 AddWindowForm add_form = new AddWindowForm(MainWindowForm.this, management);
                 add_form.setVisible(true);
+
+                updateTable();
             }
         });
 
@@ -95,7 +97,7 @@ public class MainWindowForm extends JFrame{
         basicData.setModel(model);
     }
 
-    // ตั้งค่าข้อมูลในตาราง โดยดึงข้อม฿ลจาก ArrayList
+    // ตั้งค่าข้อมูลในตาราง โดยดึงข้อมูลจาก ArrayList
     public void updateTable() {
         DefaultTableModel model = (DefaultTableModel) basicData.getModel();
         model.setRowCount(0);
