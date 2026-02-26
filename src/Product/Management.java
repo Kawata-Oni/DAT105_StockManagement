@@ -49,6 +49,8 @@ public class Management {
                 newProduct.getProductName() + " added successfully",
                 "succeed", JOptionPane.INFORMATION_MESSAGE);
 
+        warnLowStock(newProduct);
+
         return true; // สำหรับเช็คว่าสร้างแล้วจริงๆ นะ
     }
 
@@ -73,6 +75,8 @@ public class Management {
         JOptionPane.showMessageDialog(null,
                 productId + " edited successfully",
                 "succeed", JOptionPane.INFORMATION_MESSAGE);
+
+        warnLowStock(p);
     }
 
     // กลุ่มจัดการสต็อก (increase / decrease / warning) ==============================================================
@@ -121,6 +125,8 @@ public class Management {
             JOptionPane.showMessageDialog(null,
                     "Sold successfully : " + removedQuantity + " items deducted",
                     "succeed", JOptionPane.INFORMATION_MESSAGE);
+
+            warnLowStock(p);
 
         } else {
             JOptionPane.showMessageDialog(null,

@@ -29,7 +29,7 @@ public class InputBasicData extends JFrame {
         this.management = management;
         this.addWindowForm = addWindowForm;
 
-        setTitle("Input Basic Data" + productType);
+        setTitle("Input Basic Data - " + productType);
         setContentPane(inputBasicData);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pack();
