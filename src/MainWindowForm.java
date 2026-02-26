@@ -50,7 +50,10 @@ public class MainWindowForm extends JFrame{
         btnIncrease.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Click Increase");
+                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ");
+                if (id == null) return;
+                int qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter increased quantity: "));
+                management.increaseProductQuantity(id, qty);
             }
         });
 
