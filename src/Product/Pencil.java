@@ -18,9 +18,17 @@ public class Pencil extends WritingTool {
 
     @Override
     public String toString() {
-        return "";
-        /*
-        แสดงข้อมูลทั้งหมด
-        */
+        return "Pencil - Basic Data ----------------------------------" +
+                "\n" +
+                "\nProduct ID       : " +
+                "\nProduct Name     : " +
+                "\nPrice            : " +
+                "\nCurrent Quantity : " +
+                "\nMaximum Quantity : " +
+                "\nMinimum Quantity : " +
+                "\nPencil - Specific Data ----------------------------" +
+                "\n" +
+                "\nColor            : " +
+                "\nGrade            : ";
     }
 }

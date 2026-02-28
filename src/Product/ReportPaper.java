@@ -18,6 +18,18 @@ public class ReportPaper extends PaperProduct {
 
     @Override
     public String toString() {
-        return "";
+        return "Report Paper - Basic Data ----------------------------------" +
+                "\n" +
+                "\nProduct ID       : " +
+                "\nProduct Name     : " +
+                "\nPrice            : " +
+                "\nCurrent Quantity : " +
+                "\nMaximum Quantity : " +
+                "\nMinimum Quantity : " +
+                "\nReport Paper - Specific Data ----------------------------" +
+                "\n" +
+                "\nSize             : " +
+                "\nGSM              : " +
+                "\nNumber of Sheets : ";
     }
 }

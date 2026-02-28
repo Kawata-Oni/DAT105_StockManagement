@@ -24,6 +24,18 @@ public class Pen extends WritingTool {
 
     @Override
     public String toString() {
-        return "";
+        return "Pen - Basic Data ----------------------------------" +
+                "\n" +
+                "\nProduct ID       : " +
+                "\nProduct Name     : " +
+                "\nPrice            : " +
+                "\nCurrent Quantity : " +
+                "\nMaximum Quantity : " +
+                "\nMinimum Quantity : " +
+                "\nPen - Specific Data ----------------------------" +
+                "\n" +
+                "\nColor            : " +
+                "\nTip Size         : " +
+                "\nPen Type         : ";
     }
 }

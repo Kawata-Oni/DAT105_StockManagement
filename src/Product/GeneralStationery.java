@@ -18,6 +18,16 @@ public class GeneralStationery extends Product {
 
     @Override
     public String toString() {
-        return "";
+        return "General Stationery - Basic Data ----------------------------------" +
+                "\n" +
+                "\nProduct ID       : " +
+                "\nProduct Name     : " +
+                "\nPrice            : " +
+                "\nCurrent Quantity : " +
+                "\nMaximum Quantity : " +
+                "\nMinimum Quantity : " +
+                "\nGeneral Stationery - Specific Data ----------------------------" +
+                "\n" +
+                "\nStationery Type  : ";
     }
 }

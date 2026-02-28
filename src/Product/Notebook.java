@@ -18,6 +18,18 @@ public class Notebook extends PaperProduct {
 
     @Override
     public String toString() {
-        return "";
+        return "Notebook - Basic Data ----------------------------------" +
+                "\n" +
+                "\nProduct ID       : " +
+                "\nProduct Name     : " +
+                "\nPrice            : " +
+                "\nCurrent Quantity : " +
+                "\nMaximum Quantity : " +
+                "\nMinimum Quantity : " +
+                "\nNotebook - Specific Data ----------------------------" +
+                "\n" +
+                "\nSize             : " +
+                "\nGSM              : " +
+                "\nNumber of Pages  : ";
     }
 }
