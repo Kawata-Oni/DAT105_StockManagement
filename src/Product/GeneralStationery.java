@@ -20,14 +20,14 @@ public class GeneralStationery extends Product {
     public String toString() {
         return "General Stationery - Basic Data ----------------------------------" +
                 "\n" +
-                "\nProduct ID       : " +
-                "\nProduct Name     : " +
-                "\nPrice            : " +
-                "\nCurrent Quantity : " +
-                "\nMaximum Quantity : " +
-                "\nMinimum Quantity : " +
+                "\nProduct ID       : " + this.getProductId() +
+                "\nProduct Name     : " + this.getProductName() +
+                "\nPrice            : " + this.getProductPrice() +
+                "\nCurrent Quantity : " + this.getProductQuantity() +
+                "\nMaximum Quantity : " + this.getProductMax() +
+                "\nMinimum Quantity : " + this.getProductMin() +
                 "\nGeneral Stationery - Specific Data ----------------------------" +
                 "\n" +
-                "\nStationery Type  : ";
+                "\nStationery Type  : " + this.getStationeryType();
     }
 }

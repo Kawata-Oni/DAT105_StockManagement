@@ -20,16 +20,16 @@ public class ReportPaper extends PaperProduct {
     public String toString() {
         return "Report Paper - Basic Data ----------------------------------" +
                 "\n" +
-                "\nProduct ID       : " +
-                "\nProduct Name     : " +
-                "\nPrice            : " +
-                "\nCurrent Quantity : " +
-                "\nMaximum Quantity : " +
-                "\nMinimum Quantity : " +
+                "\nProduct ID       : " + this.getProductId() +
+                "\nProduct Name     : " + this.getProductName() +
+                "\nPrice            : " + this.getProductPrice() +
+                "\nCurrent Quantity : " + this.getProductQuantity() +
+                "\nMaximum Quantity : " + this.getProductMax() +
+                "\nMinimum Quantity : " + this.getProductMin() +
                 "\nReport Paper - Specific Data ----------------------------" +
                 "\n" +
-                "\nSize             : " +
-                "\nGSM              : " +
-                "\nNumber of Sheets : ";
+                "\nSize             : " + this.getSize() +
+                "\nGSM              : " + this.getGsm() +
+                "\nNumber of Sheets : " + this.getNumberOfSheets();
     }
 }

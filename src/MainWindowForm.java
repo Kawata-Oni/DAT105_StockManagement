@@ -89,7 +89,8 @@ public class MainWindowForm extends JFrame{
         btnFullData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Click Full Data");
+                // ใช้ JOptionPane รับ productId
+                // แสดง toString() ของ productId นั้นๆ
             }
         });
     }

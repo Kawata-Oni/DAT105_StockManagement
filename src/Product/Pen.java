@@ -26,16 +26,16 @@ public class Pen extends WritingTool {
     public String toString() {
         return "Pen - Basic Data ----------------------------------" +
                 "\n" +
-                "\nProduct ID       : " +
-                "\nProduct Name     : " +
-                "\nPrice            : " +
-                "\nCurrent Quantity : " +
-                "\nMaximum Quantity : " +
-                "\nMinimum Quantity : " +
+                "\nProduct ID       : " + this.getProductId() +
+                "\nProduct Name     : " + this.getProductName() +
+                "\nPrice            : " + this.getProductPrice() +
+                "\nCurrent Quantity : " + this.getProductQuantity() +
+                "\nMaximum Quantity : " + this.getProductMax() +
+                "\nMinimum Quantity : " + this.getProductMin() +
                 "\nPen - Specific Data ----------------------------" +
                 "\n" +
-                "\nColor            : " +
-                "\nTip Size         : " +
-                "\nPen Type         : ";
+                "\nColor            : " + this.getColor() +
+                "\nTip Size         : " + this.getTipSize() +
+                "\nPen Type         : " + this.getPenType();
     }
 }
