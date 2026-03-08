@@ -1,8 +1,9 @@
 package Product;
 
-public abstract class Product {
+import java.io.Serializable;
 
-    // attribute
+public abstract class Product implements Serializable {
+
     private String productId;
     private String productName;
     private double productPrice;
@@ -11,7 +12,6 @@ public abstract class Product {
     private int productMin;
     private boolean productStatus;
 
-    // constructor
     public Product(String productId, String productName, double productPrice, int productQuantity, int productMax, int productMin) {
         this.productId = productId;
         this.productName = productName;
@@ -19,60 +19,66 @@ public abstract class Product {
         this.productQuantity = productQuantity;
         this.productMax = productMax;
         this.productMin = productMin;
+
+        updateStatus();
     }
 
-    // method getter
     public String getProductId() {
         return productId;
     }
+
     public String getProductName() {
         return productName;
     }
+
     public double getProductPrice() {
         return productPrice;
     }
+
     public int getProductQuantity() {
         return productQuantity;
     }
+
     public int getProductMax() {
         return productMax;
     }
+
     public int getProductMin() {
         return productMin;
     }
+
     public boolean getProductStatus() {
         return productStatus;
     }
 
-    // method setter
-
     public void setProductName(String newName) {
         this.productName = newName;
     }
+
     public void setProductPrice(double newPrice) {
         this.productPrice = newPrice;
     }
 
     public void setProductQuantity(int newQty) {
         this.productQuantity = newQty;
+        updateStatus();
     }
+
     public void setProductMax(int newMax) {
         this.productMax = newMax;
     }
+
     public void setProductMin(int newMin) {
         this.productMin = newMin;
     }
 
-    // others method
     public void updateStatus() {
-        // ถ้า qty ปัจจุบันน้อยกว่า min
         if (this.productQuantity <= this.productMin) {
-            this.productStatus = false; // สถานะเป็น False (ของหมด/ต้องสั่งเพิ่ม)
+            this.productStatus = false;
         } else {
-            this.productStatus = true;  // สถานะเป็น True (ของยังมีพอขาย)
+            this.productStatus = true;
         }
     }
 
-    // abstract method
     public abstract String toString();
 }
