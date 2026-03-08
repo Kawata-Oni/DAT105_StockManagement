@@ -29,6 +29,7 @@ public class MainWindowForm extends JFrame{
         management = new Management(); // สร้าง obj ของ Management เพื่อเชื่อมกับ ArrayList (Attribute ของ Management)
 
         setupTable();
+        updateTable();
 
         frame.setContentPane(main_form);
 
@@ -89,8 +90,17 @@ public class MainWindowForm extends JFrame{
         btnFullData.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // ใช้ JOptionPane รับ productId
-                // แสดง toString() ของ productId นั้นๆ
+                String id = JOptionPane.showInputDialog("Enter Product ID:");
+        if (id == null) return;
+        Product p = management.findProduct(id);
+        if (p == null) {
+            JOptionPane.showMessageDialog(null,"Product not found");
+            return;
+        }
+        JOptionPane.showMessageDialog(null,
+                p.toString(),
+                "Full Product Data",
+                JOptionPane.INFORMATION_MESSAGE);
             }
         });
     }
