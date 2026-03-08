@@ -141,10 +141,11 @@ public class InputBasicData extends JFrame {
                     return;
                 }
 
-                // สร้าง obj เพื่อเอาเข้า ArrayList =======================================================
+                // สร้าง obj เพื่อเอาเข้า ArrayList ==============================================
                 // สร้าง obj เตรียมไว้ใส่ค่าที่รับมา
                 Product newProduct = null;
 
+                // รับข้อมูลเฉพาะ ==============================================================
                 try {
                     if (productType.equals("Pencil")) {
                         String color = JOptionPane.showInputDialog(null, "Enter Color:");

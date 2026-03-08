@@ -1,5 +1,5 @@
 import Product.Management;
-import Product.Product;
+import Product.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -82,11 +82,88 @@ public class EditBasicData extends JFrame {
                         return;
                     }
 
-                    // แก้ไขข้อมูล
+                    // แก้ข้อมูลเฉพาะ =====================================================
+                    int choice = JOptionPane.showConfirmDialog(EditBasicData.this,
+                            "Do you want to edit specific data for this product?",
+                            "Edit Specific Data",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE);
+
+                    if (choice == JOptionPane.YES_OPTION) {
+                        // instanceof เช็ค class ของ product นั้นๆ
+                        if (p instanceof Pencil) {
+                            Pencil pencil = (Pencil) p; // กำหนดให้มอง p เป็น class Pencil แล้วเอาไปใส่ใน obj pencil
+                            String color = JOptionPane.showInputDialog(EditBasicData.this, "Enter Color:", pencil.getColor());
+                            if (color == null) return; // Cancel
+
+                            String grade = JOptionPane.showInputDialog(EditBasicData.this, "Enter Pencil Grade (e.g., HB, 2B):", pencil.getGrade());
+                            if (grade == null) return;
+
+                            pencil.setColor(color);
+                            pencil.setGrade(grade);
+
+                        } else if (p instanceof Pen) {
+                            Pen pen = (Pen) p;
+                            String color = JOptionPane.showInputDialog(EditBasicData.this, "Enter Color:", pen.getColor());
+                            if (color == null) return;
+
+                            String tipSizeStr = JOptionPane.showInputDialog(EditBasicData.this, "Enter Tip Size (e.g., 0.5):", pen.getTipSize());
+                            if (tipSizeStr == null) return;
+                            double tipSize = Double.parseDouble(tipSizeStr);
+
+                            String penType = JOptionPane.showInputDialog(EditBasicData.this, "Enter Pen Type (e.g., Gel, Ballpoint):", pen.getPenType());
+                            if (penType == null) return;
+
+                            pen.setColor(color);
+                            pen.setTipSize(tipSize);
+                            pen.setPenType(penType);
+
+                        } else if (p instanceof Notebook) {
+                            Notebook nb = (Notebook) p;
+                            String size = JOptionPane.showInputDialog(EditBasicData.this, "Enter Paper Size (e.g., A4, B5):", nb.getSize());
+                            if (size == null) return;
+
+                            String gsmStr = JOptionPane.showInputDialog(EditBasicData.this, "Enter Paper GSM (e.g., 70, 80):", nb.getGsm());
+                            if (gsmStr == null) return;
+                            int gsm = Integer.parseInt(gsmStr);
+
+                            String pagesStr = JOptionPane.showInputDialog(EditBasicData.this, "Enter Number of Pages:", nb.getNumberOfPages());
+                            if (pagesStr == null) return;
+                            int pages = Integer.parseInt(pagesStr);
+
+                            nb.setSize(size);
+                            nb.setGsm(gsm);
+                            nb.setNumberOfPages(pages);
+
+                        } else if (p instanceof ReportPaper) {
+                            ReportPaper rp = (ReportPaper) p;
+                            String size = JOptionPane.showInputDialog(EditBasicData.this, "Enter Paper Size (e.g., A4):", rp.getSize());
+                            if (size == null) return;
+
+                            String gsmStr = JOptionPane.showInputDialog(EditBasicData.this, "Enter Paper GSM (e.g., 70, 80):", rp.getGsm());
+                            if (gsmStr == null) return;
+                            int gsm = Integer.parseInt(gsmStr);
+
+                            String sheetsStr = JOptionPane.showInputDialog(EditBasicData.this, "Enter Number of Sheets:", rp.getNumberOfSheets());
+                            if (sheetsStr == null) return;
+                            int sheets = Integer.parseInt(sheetsStr);
+
+                            rp.setSize(size);
+                            rp.setGsm(gsm);
+                            rp.setNumberOfSheets(sheets);
+
+                        } else if (p instanceof GeneralStationery) {
+                            GeneralStationery gs = (GeneralStationery) p;
+                            String statType = JOptionPane.showInputDialog(EditBasicData.this, "Enter Stationery Type (e.g., Ruler, Eraser):", gs.getStationeryType());
+                            if (statType == null) return;
+
+                            gs.setStationeryType(statType);
+                        }
+                    }
+
+                    // แก้ไขข้อมูลพื้นฐาน
                     management.editProduct(productId, nameStr, newPrice, newMin, newMax);
-
                     mainWindowForm.updateTable();
-
                     dispose();
 
                 } catch (NumberFormatException ex) {
