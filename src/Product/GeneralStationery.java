@@ -16,6 +16,11 @@ public class GeneralStationery extends Product {
         return stationeryType;
     }
 
+    // method setter
+    public void setStationeryType(String stationeryType) {
+        this.stationeryType = stationeryType;
+    }
+
     @Override
     public String toString() {
         return "General Stationery - Basic Data ----------------------------------" +

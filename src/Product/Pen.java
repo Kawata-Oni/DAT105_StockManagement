@@ -17,9 +17,16 @@ public class Pen extends WritingTool {
     public double getTipSize() {
         return tipSize;
     }
-
     public String getPenType() {
         return penType;
+    }
+
+    // method setter
+    public void setTipSize(double tipSize) {
+        this.tipSize = tipSize;
+    }
+    public void setPenType(String penType) {
+        this.penType = penType;
     }
 
     @Override

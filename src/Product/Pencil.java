@@ -16,6 +16,11 @@ public class Pencil extends WritingTool {
         return grade;
     }
 
+    // method setter
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
     @Override
     public String toString() {
         return "Pencil - Basic Data ----------------------------------" +

@@ -16,6 +16,11 @@ public class Notebook extends PaperProduct {
         return numberOfPages;
     }
 
+    // method setter
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
+
     @Override
     public String toString() {
         return "Notebook - Basic Data ----------------------------------" +

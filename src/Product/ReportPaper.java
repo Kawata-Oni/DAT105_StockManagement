@@ -16,6 +16,11 @@ public class ReportPaper extends PaperProduct {
         return numberOfSheets;
     }
 
+    // method setter
+    public void setNumberOfSheets(int numberOfSheets) {
+        this.numberOfSheets = numberOfSheets;
+    }
+
     @Override
     public String toString() {
         return "Report Paper - Basic Data ----------------------------------" +

@@ -13,12 +13,20 @@ public abstract class PaperProduct extends Product {
         this.gsm = gsm;
     }
 
-    // getter
+    // method getter
     public String getSize() {
         return size;
     }
     public int getGsm() {
         return gsm;
+    }
+
+    // method setter
+    public void setSize(String size) {
+        this.size = size;
+    }
+    public void setGsm(int gsm) {
+        this.gsm = gsm;
     }
 
     @Override
