@@ -30,7 +30,7 @@ public class GeneralStationery extends Product {
                 "\nPrice            : " + this.getProductPrice() +
                 "\nCurrent Quantity : " + this.getProductQuantity() +
                 "\nMaximum Quantity : " + this.getProductMax() +
-                "\nMinimum Quantity : " + this.getProductMin() +
+                "\nMinimum Quantity : " + this.getProductMin() + "\n" +
                 "\nGeneral Stationery - Specific Data ----------------------------" +
                 "\n" +
                 "\nStationery Type  : " + this.getStationeryType();

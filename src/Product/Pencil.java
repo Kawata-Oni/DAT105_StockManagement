@@ -30,7 +30,7 @@ public class Pencil extends WritingTool {
                 "\nPrice            : " + this.getProductPrice() +
                 "\nCurrent Quantity : " + this.getProductQuantity() +
                 "\nMaximum Quantity : " + this.getProductMax() +
-                "\nMinimum Quantity : " + this.getProductMin() +
+                "\nMinimum Quantity : " + this.getProductMin() + "\n" +
                 "\nPencil - Specific Data ----------------------------" +
                 "\n" +
                 "\nColor            : " + this.getColor() +
