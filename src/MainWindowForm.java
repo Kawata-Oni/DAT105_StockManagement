@@ -5,6 +5,10 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Component;                          // สำหรับใช้ใน Renderer
+import java.awt.Color;                              // สำหรับตั้งค่าสี
 
 public class MainWindowForm extends JFrame{
 
@@ -110,6 +114,47 @@ public class MainWindowForm extends JFrame{
         String[] columnNames = {"ID", "Name", "Price", "Quantity", "Max", "Min", "Status"}; // array ของ column ตาราง
         DefaultTableModel model = new DefaultTableModel(null, columnNames); // DefaultTableModel ใช้ตั้งค่าตาราง
         basicData.setModel(model);
+
+        // --- ส่วนที่เพิ่มเข้ามาเพื่อจัดการสี ---
+        int statusColumnIndex = 6; // คอลัมน์ Status คือ Index ที่ 6
+        basicData.getColumnModel().getColumn(statusColumnIndex).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value,
+                                                           boolean isSelected, boolean hasFocus, int row, int column) {
+
+                // เรียกความสามารถพื้นฐานมาใช้ก่อน
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+                // บังคับให้ JLabel ยอมรับสีพื้นหลัง
+                setOpaque(true);
+
+                if (value != null) {
+                    String status = value.toString();
+
+                    if (status.equalsIgnoreCase("Available")) {
+                        c.setBackground(new Color(40, 167, 69)); // สีเขียวเข้ม
+                        c.setForeground(Color.WHITE);           // ตัวอักษรขาว
+                    } else if (status.equalsIgnoreCase("Low Stock")) {
+                        c.setBackground(new Color(220, 53, 69));  // สีแดงเข้ม
+                        c.setForeground(Color.WHITE);           // ตัวอักษรขาว
+                    } else {
+                        // แถวอื่นๆ ให้เป็นสีพื้นหลังตารางปกติ
+                        c.setBackground(table.getBackground());
+                        c.setForeground(table.getForeground());
+                    }
+
+                    // กรณีที่กดเลือกแถว (Selection) ให้สีเข้มขึ้นเพื่อให้รู้ว่าเลือกอยู่
+                    if (isSelected) {
+                        c.setBackground(c.getBackground().darker());
+                    }
+                }
+
+                // จัดข้อความให้อยู่กึ่งกลาง
+                setHorizontalAlignment(JLabel.CENTER);
+
+                return c;
+            }
+        });
     }
 
     // ตั้งค่าข้อมูลในตาราง โดยดึงข้อมูลจาก ArrayList
@@ -130,6 +175,7 @@ public class MainWindowForm extends JFrame{
             model.addRow(rowData);
         }
     }
+
 
     // Main Method ============================================================================
     public static void main(String[] args) {
