@@ -47,10 +47,8 @@ public class EditBasicData extends JFrame {
         editMax.setText(String.valueOf(p.getProductMax()));
         editMin.setText(String.valueOf(p.getProductMin()));
 
-        
         btnCancel.addActionListener(e -> dispose());
 
-        
         btnConfirm.addActionListener(e -> handleConfirm());
     }
 
