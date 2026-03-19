@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AddWindowForm extends JFrame {
+
+    // attribute
     private JButton btnConfirm;
     private JButton btnCancel;
     private JRadioButton choicePencil;
@@ -14,22 +16,24 @@ public class AddWindowForm extends JFrame {
     private JRadioButton choiceGeneral;
     private JPanel add_form;
 
-    // attribute
     private MainWindowForm mainWindowForm;
     private Management management;
 
+    // constructor
     public AddWindowForm(MainWindowForm mainWindowForm, Management management) {
+
+        // รับค่าจากหน้าหลัก
         this.mainWindowForm = mainWindowForm;
         this.management = management;
 
-       
+        // ตั้งค่าหน้าต่าง
         setTitle("Add Window");
         setContentPane(add_form);
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); // ให้อยู่กลางจอ
 
-        
+        // ================= GROUP RADIO BUTTON =================
         ButtonGroup group = new ButtonGroup();
         group.add(choicePencil);
         group.add(choicePen);
@@ -37,44 +41,68 @@ public class AddWindowForm extends JFrame {
         group.add(choiceReportPaper);
         group.add(choiceGeneral);
 
-        // cancel button
-        btnCancel.addActionListener(e -> dispose());
+        // ================= ปุ่ม Cancel =================
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // ปิดหน้าต่าง
+            }
+        });
 
-        // confirm button
-        btnConfirm.addActionListener(e -> handleConfirm());
-    }
+        // ================= ปุ่ม Confirm =================
+        btnConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-    
-    private void handleConfirm() {
+                // 🔥 เช็คว่าผู้ใช้เลือกประเภทสินค้าหรือยัง
+                if (!choicePencil.isSelected() &&
+                    !choicePen.isSelected() &&
+                    !choiceNotebook.isSelected() &&
+                    !choiceReportPaper.isSelected() &&
+                    !choiceGeneral.isSelected()) {
 
-        String selectedCategory = getSelectedCategory();
+                    JOptionPane.showMessageDialog(null,
+                            "Please select an item!",
+                            "Warning",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
 
-        
-        if (selectedCategory == null) {
-            JOptionPane.showMessageDialog(this,
-                    "Please select an item!",
-                    "Warning",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+                // 🔥 เปิดหน้ากรอกข้อมูลตามประเภทที่เลือก
+                if (choicePencil.isSelected()) {
 
-        
-        InputBasicData inputForm =
-                new InputBasicData(selectedCategory, mainWindowForm, management, this);
+                    InputBasicData inputForm =
+                            new InputBasicData("Pencil", mainWindowForm, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
 
-        inputForm.setVisible(true);
+                } else if (choicePen.isSelected()) {
 
-        
-        setVisible(false);
-    }
+                    InputBasicData inputForm =
+                            new InputBasicData("Pen", mainWindowForm, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
 
-  
-    private String getSelectedCategory() {
-        if (choicePencil.isSelected()) return "Pencil";
-        if (choicePen.isSelected()) return "Pen";
-        if (choiceNotebook.isSelected()) return "Notebook";
-        if (choiceReportPaper.isSelected()) return "Report Paper";
-        if (choiceGeneral.isSelected()) return "General Stationery";
-        return null;
+                } else if (choiceNotebook.isSelected()) {
+
+                    InputBasicData inputForm =
+                            new InputBasicData("Notebook", mainWindowForm, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
+
+                } else if (choiceReportPaper.isSelected()) {
+
+                    InputBasicData inputForm =
+                            new InputBasicData("Report Paper", mainWindowForm, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
+
+                } else if (choiceGeneral.isSelected()) {
+
+                    InputBasicData inputForm =
+                            new InputBasicData("General Stationery", mainWindowForm, management, AddWindowForm.this);
+                    inputForm.setVisible(true);
+                }
+
+                // ปิดหน้าปัจจุบันหลังเลือกประเภทแล้ว
+                dispose();
+            }
+        });
     }
 }
