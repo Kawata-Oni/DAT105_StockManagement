@@ -58,7 +58,7 @@ public class MainWindowForm extends JFrame{
         btnIncrease.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ","Increase",JOptionPane.QUESTION_MESSAGE);
+                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ");
                 if (id == null) return;
                 int qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter increased quantity: "));
                 management.increaseProductQuantity(id, qty);
@@ -71,7 +71,7 @@ public class MainWindowForm extends JFrame{
         btnDecrease.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ","Decrease",JOptionPane.QUESTION_MESSAGE);
+                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ");
                 if (id == null) return;
                 int qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter decreased quantity: "));
                 management.decreaseProductQuantity(id, qty);
@@ -84,8 +84,7 @@ public class MainWindowForm extends JFrame{
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ","Edit",JOptionPane.QUESTION_MESSAGE);
-                if (id == null) return;
+                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ");
                 EditBasicData edit_form = new EditBasicData(MainWindowForm.this, management, id);
                 edit_form.setVisible(true);
             }
@@ -100,6 +99,7 @@ public class MainWindowForm extends JFrame{
         Product p = management.findProduct(id);
         if (p == null) {
             JOptionPane.showMessageDialog(null,"Product not found");
+            JOptionPane.showMessageDialog(null,"Product not found","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
         JOptionPane.showMessageDialog(null,
@@ -187,4 +187,3 @@ public class MainWindowForm extends JFrame{
             }
         });
     }
-}
