@@ -14,7 +14,6 @@ public class AddWindowForm extends JFrame {
     private JRadioButton choiceGeneral;
     private JPanel add_form;
 
-    // attribute
     private MainWindowForm mainWindowForm;
     private Management management;
 
@@ -22,14 +21,12 @@ public class AddWindowForm extends JFrame {
         this.mainWindowForm = mainWindowForm;
         this.management = management;
 
-        // setup window
         setTitle("Add Window");
         setContentPane(add_form);
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // group JRadioButton
         ButtonGroup group = new ButtonGroup();
         group.add(choicePencil);
         group.add(choicePen);
@@ -37,10 +34,8 @@ public class AddWindowForm extends JFrame {
         group.add(choiceReportPaper);
         group.add(choiceGeneral);
 
-        // cancel button
         btnCancel.addActionListener(e -> dispose());
 
-        // confirm button
         btnConfirm.addActionListener(e -> handleConfirm());
     }
 
