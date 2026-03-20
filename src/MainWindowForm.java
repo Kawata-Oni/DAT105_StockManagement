@@ -85,13 +85,7 @@ public class MainWindowForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id = JOptionPane.showInputDialog(null,"Enter Product ID: ");
-<<<<<<< HEAD
-<<<<<<< HEAD
                 if (id == null) return;
-=======
->>>>>>> parent of 60315c1 (Update GUI)
-=======
->>>>>>> parent of 60315c1 (Update GUI)
                 EditBasicData edit_form = new EditBasicData(MainWindowForm.this, management, id);
                 edit_form.setVisible(true);
             }

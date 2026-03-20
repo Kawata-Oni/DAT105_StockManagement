@@ -44,7 +44,7 @@
                 </constraints>
                 <properties>
                   <font name="Arial Rounded MT Bold"/>
-                  <text value="Increase Product"/>
+                  <text value="Increase Product Qty"/>
                 </properties>
               </component>
               <component id="d0d03" class="javax.swing.JButton" binding="btnDecrease">
@@ -53,7 +53,7 @@
                 </constraints>
                 <properties>
                   <font name="Arial Rounded MT Bold"/>
-                  <text value="Decrease Product"/>
+                  <text value="Decrease Product Qty"/>
                 </properties>
               </component>
               <component id="65892" class="javax.swing.JButton" binding="btnFullData">
@@ -62,7 +62,7 @@
                 </constraints>
                 <properties>
                   <font name="Arial Rounded MT Bold"/>
-                  <text value="show full data"/>
+                  <text value="Show Full Data"/>
                 </properties>
               </component>
               <component id="18f40" class="javax.swing.JButton" binding="btnEdit">
@@ -71,8 +71,7 @@
                 </constraints>
                 <properties>
                   <font name="Arial Rounded MT Bold"/>
-                  <text value="Edit Product"/>
-<<<<<<< HEAD
+                  <text value="Edit Product Data"/>
                 </properties>
               </component>
               <component id="3d78" class="javax.swing.JButton" binding="btnRefreash">
@@ -82,8 +81,6 @@
                 <properties>
                   <font name="Arial Rounded MT Bold"/>
                   <text value="Refreash Table"/>
-=======
->>>>>>> parent of 60315c1 (Update GUI)
                 </properties>
               </component>
             </children>
