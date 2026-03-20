@@ -93,7 +93,7 @@ public class EditBasicData extends JFrame {
                         // instanceof เช็ค class ของ product นั้นๆ
                         if (p instanceof Pencil) {
                             Pencil pencil = (Pencil) p; // กำหนดให้มอง p เป็น class Pencil แล้วเอาไปใส่ใน obj pencil
-                            String color = JOptionPane.showInputDialog(null, "Enter Color:", pencil.getColor());
+                            String color = JOptionPane.showInputDialog(null, "Enter Color(e.g., Black, Red):", pencil.getColor());
                             if (color == null) return; // Cancel
 
                             String grade = JOptionPane.showInputDialog(null, "Enter Pencil Grade (e.g., HB, 2B):", pencil.getGrade());
@@ -104,10 +104,10 @@ public class EditBasicData extends JFrame {
 
                         } else if (p instanceof Pen) {
                             Pen pen = (Pen) p;
-                            String color = JOptionPane.showInputDialog(null, "Enter Color:", pen.getColor());
+                            String color = JOptionPane.showInputDialog(null, "Enter Color (e.g., Blue, Red, Black):", pen.getColor());
                             if (color == null) return;
 
-                            String tipSizeStr = JOptionPane.showInputDialog(null, "Enter Tip Size (e.g., 0.5):", pen.getTipSize());
+                            String tipSizeStr = JOptionPane.showInputDialog(null, "Enter Tip Size (e.g., 0.5, 0.7):", pen.getTipSize());
                             if (tipSizeStr == null) return;
                             double tipSize = Double.parseDouble(tipSizeStr);
 

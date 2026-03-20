@@ -107,7 +107,7 @@ public class MainWindowForm extends JFrame{
                     // ดักจับ Exception เมื่อพิมพ์ตัวอักษรแทนตัวเลข
                     try {
                         qty = Integer.parseInt(qtyStr);
-                        // ถ้าเลขติดลบหรือ 0 (เสริมความปลอดภัยให้)
+                        // ถ้าเลขติดลบหรือ 0
                         if (qty <= 0) {
                             JOptionPane.showMessageDialog(null,
                                     "Quantity must be greater than 0!",
