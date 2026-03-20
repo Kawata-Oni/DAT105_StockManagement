@@ -168,7 +168,9 @@ public class EditBasicData extends JFrame {
 
                 } catch (NumberFormatException ex) {
                     // ดักไว้ว่าต้องพิมพ์เป็นตัวเลข
-                    JOptionPane.showMessageDialog(null, "Invalid number format!", "Input Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,
+                            "Invalid number format! Please enter valid numbers for Price, Max, and Min.",
+                            "Input Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
