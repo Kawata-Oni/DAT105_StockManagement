@@ -155,47 +155,47 @@ public class InputBasicData extends JFrame {
             switch (productType) {
 
                 case "Pencil":
-                    String color = JOptionPane.showInputDialog(this, "Enter Color (Black, Blue etc.)");
+                    String color = JOptionPane.showInputDialog(this, "Enter Color:");
                     if (color == null) return null;
 
-                    String grade = JOptionPane.showInputDialog(this, "Enter Pencil Grade (2B, HB etc.)");
+                    String grade = JOptionPane.showInputDialog(this, "Enter Pencil Grade:");
                     if (grade == null) return null;
 
                     return new Pencil(id, name, price, qty, max, min, color, grade);
 
                 case "Pen":
-                    color = JOptionPane.showInputDialog(this, "Enter Color (Black, Red, Blue etc.)");
+                    color = JOptionPane.showInputDialog(this, "Enter Color:");
                     if (color == null) return null;
 
-                    String tipStr = JOptionPane.showInputDialog(this, "Enter Tip Size (0.35, 0.5 etc.):");
+                    String tipStr = JOptionPane.showInputDialog(this, "Enter Tip Size:");
                     if (tipStr == null) return null;
                     double tip = Double.parseDouble(tipStr);
 
-                    String penType = JOptionPane.showInputDialog(this, "Enter Pen Type (Gel, BallPen etc.)");
+                    String penType = JOptionPane.showInputDialog(this, "Enter Pen Type:");
                     if (penType == null) return null;
 
                     return new Pen(id, name, price, qty, max, min, color, tip, penType);
 
                 case "Notebook":
-                    String size = JOptionPane.showInputDialog(this, "Enter Size (A4, B5 etc.)");
+                    String size = JOptionPane.showInputDialog(this, "Enter Size:");
                     if (size == null) return null;
 
-                    int gsm = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter GSM (70, 80 etc.)"));
-                    int pages = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Number of Pages (80, 120 etc.)"));
+                    int gsm = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter GSM:"));
+                    int pages = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Pages:"));
 
                     return new Notebook(id, name, price, qty, max, min, size, gsm, pages);
 
                 case "Report Paper":
-                    size = JOptionPane.showInputDialog(this, "Enter Size (A4, B5 etc.)");
+                    size = JOptionPane.showInputDialog(this, "Enter Size:");
                     if (size == null) return null;
 
-                    gsm = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter GSM (70, 80 etc.)"));
-                    int sheets = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Number of Sheets (300, 500 etc.)"));
+                    gsm = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter GSM:"));
+                    int sheets = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Sheets:"));
 
                     return new ReportPaper(id, name, price, qty, max, min, size, gsm, sheets);
 
                 case "General Stationery":
-                    String statType = JOptionPane.showInputDialog(this, "Enter Type (Ruler, Cutter etc.)");
+                    String statType = JOptionPane.showInputDialog(this, "Enter Type:");
                     if (statType == null) return null;
 
                     return new GeneralStationery(id, name, price, qty, max, min, statType);
