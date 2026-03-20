@@ -82,7 +82,7 @@ public class Management {
 
     // ================= INCREASE =================
 
-    public void increaseProductQuantity(String productId, int addedQuantity) {
+    public boolean increaseProductQuantity(String productId, int addedQuantity) {
 
         Product p = findProduct(productId);
 
@@ -90,7 +90,7 @@ public class Management {
             JOptionPane.showMessageDialog(null,
                     "Product not found",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
 
         int newQty = p.getProductQuantity() + addedQuantity;
@@ -99,7 +99,7 @@ public class Management {
             JOptionPane.showMessageDialog(null,
                     "Maximum stock limit is " + p.getProductMax(),
                     "Stock Alert", JOptionPane.WARNING_MESSAGE);
-            return;
+            return false;
         }
 
         p.setProductQuantity(newQty);
@@ -109,11 +109,12 @@ public class Management {
         JOptionPane.showMessageDialog(null,
                 "Increased Successfully",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
+        return true;
     }
 
     // ================= DECREASE =================
 
-    public void decreaseProductQuantity(String productId, int removedQuantity) {
+    public boolean decreaseProductQuantity(String productId, int removedQuantity) {
 
         Product p = findProduct(productId);
 
@@ -121,14 +122,14 @@ public class Management {
             JOptionPane.showMessageDialog(null,
                     "Product not found",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
 
         if (p.getProductQuantity() < removedQuantity) {
             JOptionPane.showMessageDialog(null,
                     "Not enough stock",
                     "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
 
         int newQty = p.getProductQuantity() - removedQuantity;
@@ -142,6 +143,8 @@ public class Management {
                 "Success", JOptionPane.INFORMATION_MESSAGE);
 
         warnLowStock(p);
+
+        return true;
     }
 
     // ================= WARNING =================

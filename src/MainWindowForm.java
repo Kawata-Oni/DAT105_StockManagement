@@ -116,6 +116,12 @@ public class MainWindowForm extends JFrame{
                             continue;
                         }
 
+                        // สั่งเพิ่มจำนวน
+                        boolean is_success = management.increaseProductQuantity(id, qty);
+                        if (!is_success) {
+                            continue;
+                        }
+
                         // ถ้าผ่านหมดให้ break ลูปนี้
                         break;
 
@@ -128,8 +134,6 @@ public class MainWindowForm extends JFrame{
                     }
                 }
 
-                // สั่งเพิ่มจำนวน + อัปเดตตาราง
-                management.increaseProductQuantity(id, qty);
                 updateTable();
             }
         });
@@ -187,12 +191,18 @@ public class MainWindowForm extends JFrame{
                     // ดักจับ Exception เมื่อพิมพ์ตัวอักษรแทนตัวเลข
                     try {
                         qty = Integer.parseInt(qtyStr);
-                        // ถ้าเลขติดลบหรือ 0 (เสริมความปลอดภัยให้)
+                        // ถ้าเลขติดลบหรือ 0
                         if (qty <= 0) {
                             JOptionPane.showMessageDialog(null,
                                     "Quantity must be greater than 0!",
                                     "Warning",
                                     JOptionPane.WARNING_MESSAGE);
+                            continue;
+                        }
+
+                        // สั่งลดจำนวน
+                        boolean is_success = management.decreaseProductQuantity(id, qty);
+                        if (!is_success) {
                             continue;
                         }
 
@@ -208,8 +218,6 @@ public class MainWindowForm extends JFrame{
                     }
                 }
 
-                // สั่งลดจำนวน + อัปเดตตาราง
-                management.decreaseProductQuantity(id, qty);
                 updateTable();
             }
         });
