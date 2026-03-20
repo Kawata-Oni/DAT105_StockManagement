@@ -66,6 +66,15 @@ public class InputBasicData extends JFrame {
                     return;
                 }
 
+                // ถ้าไม่เป็นไปตามรูปแบบให้แจ้งเตือน
+                if (!idStr.matches("^P\\d{4}$")) {  // กำหนดรูปแบบ
+                    JOptionPane.showMessageDialog(null,
+                            "Product ID must be in format P0001 - P9999",
+                            "Invalid ID Format",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 // ถ้า Id ซ้ำให้แจ้งเตือน
                 if (management.checkProductId(idStr)) {
                     JOptionPane.showMessageDialog(null, "This Product ID has been uesd",
