@@ -167,9 +167,49 @@ public class MainWindowForm extends JFrame{
                 }
 
                 int qty = 0;
-                qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter decreased quantity: "));
-                management.decreaseProductQuantity(id, qty);
+                while (true) {
+                    String qtyStr = JOptionPane.showInputDialog(null, "Enter decreased quantity: ");
 
+                    // กด Cancel
+                    if (qtyStr == null) {
+                        return;
+                    }
+
+                    // ปล่อยว่างให้แจ้งเตือน + วนรับค่าใหม่
+                    if (qtyStr.trim().isEmpty()) {
+                        JOptionPane.showMessageDialog(null,
+                                "Quantity cannot be empty!",
+                                "Warning",
+                                JOptionPane.WARNING_MESSAGE);
+                        continue;
+                    }
+
+                    // ดักจับ Exception เมื่อพิมพ์ตัวอักษรแทนตัวเลข
+                    try {
+                        qty = Integer.parseInt(qtyStr);
+                        // ถ้าเลขติดลบหรือ 0 (เสริมความปลอดภัยให้)
+                        if (qty <= 0) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Quantity must be greater than 0!",
+                                    "Warning",
+                                    JOptionPane.WARNING_MESSAGE);
+                            continue;
+                        }
+
+                        // ถ้าผ่านหมดให้ break ลูปนี้
+                        break;
+
+                    } catch (NumberFormatException ex) {
+                        // แจ้งเตือน + วนกลับไปให้กรอกใหม่
+                        JOptionPane.showMessageDialog(null,
+                                "Invalid format! Please enter numbers only.",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+
+                // สั่งลดจำนวน + อัปเดตตาราง
+                management.decreaseProductQuantity(id, qty);
                 updateTable();
             }
         });
