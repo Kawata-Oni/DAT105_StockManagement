@@ -107,7 +107,7 @@ public class Management {
         saveData();
 
         JOptionPane.showMessageDialog(null,
-                "Stock updated",
+                "Increased Successfully",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -138,7 +138,7 @@ public class Management {
         saveData();
 
         JOptionPane.showMessageDialog(null,
-                "Sold successfully",
+                "Decreased Successfully ",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
 
         warnLowStock(p);

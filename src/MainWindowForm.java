@@ -71,9 +71,36 @@ public class MainWindowForm extends JFrame{
         btnDecrease.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String id = JOptionPane.showInputDialog(null,"Enter Product ID: ","Decrease",JOptionPane.QUESTION_MESSAGE);
-                if (id == null) return;
-                int qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter decreased quantity: "));
+                String id = "";
+                while (true) {
+                    id = JOptionPane.showInputDialog(null, "Enter Product ID: ",
+                            "Decrease", JOptionPane.QUESTION_MESSAGE);
+                    // กด Cancel
+                    if (id == null) {
+                        return;
+                    }
+                    // ถ้าปล่อยว่างแล้วกด OK ให้แจ้งเตือน + วนรับค่าใหม่
+                    if (id.trim().isEmpty()) {
+                        JOptionPane.showMessageDialog(null,
+                                "Product ID cannot be empty. Please enter a Product ID!",
+                                "Warning",
+                                JOptionPane.WARNING_MESSAGE);
+                        continue;
+                    }
+                    // ถ้าไม่มี product Id นี้ให้แจ้งเตือน + วนรับค่าใหม่
+                    if (!management.checkProductId(id)) {
+                        JOptionPane.showMessageDialog(null,
+                                "Product ID is not found. Please enter again!",
+                                "Warning",
+                                JOptionPane.WARNING_MESSAGE);
+                        continue;
+                    }
+                    // ถ้ากรอก product id แล้วให้ break loop
+                    break;
+                }
+
+                int qty = 0;
+                qty = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter decreased quantity: "));
                 management.decreaseProductQuantity(id, qty);
 
                 updateTable();
