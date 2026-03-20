@@ -69,7 +69,7 @@ public class InputBasicData extends JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+ำ
         if (management.checkProductId(idStr)) {
             JOptionPane.showMessageDialog(this,
                     "This Product ID already exists",
