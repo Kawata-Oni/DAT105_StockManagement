@@ -16,6 +16,11 @@ public abstract class WritingTool extends Product {
         return color;
     }
 
+    // method setter
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public abstract String toString();
 }

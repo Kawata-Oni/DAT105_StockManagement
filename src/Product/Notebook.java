@@ -16,6 +16,11 @@ public class Notebook extends PaperProduct {
         return numberOfPages;
     }
 
+    // method setter
+    public void setNumberOfPages(int numberOfPages) {
+        this.numberOfPages = numberOfPages;
+    }
+
     @Override
     public String toString() {
         return "Notebook - Basic Data ----------------------------------" +
@@ -25,7 +30,7 @@ public class Notebook extends PaperProduct {
                 "\nPrice            : " + this.getProductPrice() +
                 "\nCurrent Quantity : " + this.getProductQuantity() +
                 "\nMaximum Quantity : " + this.getProductMax() +
-                "\nMinimum Quantity : " + this.getProductMin() +
+                "\nMinimum Quantity : " + this.getProductMin() + "\n" +
                 "\nNotebook - Specific Data ----------------------------" +
                 "\n" +
                 "\nSize             : " + this.getSize() +

@@ -17,9 +17,16 @@ public class Pen extends WritingTool {
     public double getTipSize() {
         return tipSize;
     }
-
     public String getPenType() {
         return penType;
+    }
+
+    // method setter
+    public void setTipSize(double tipSize) {
+        this.tipSize = tipSize;
+    }
+    public void setPenType(String penType) {
+        this.penType = penType;
     }
 
     @Override
@@ -31,7 +38,7 @@ public class Pen extends WritingTool {
                 "\nPrice            : " + this.getProductPrice() +
                 "\nCurrent Quantity : " + this.getProductQuantity() +
                 "\nMaximum Quantity : " + this.getProductMax() +
-                "\nMinimum Quantity : " + this.getProductMin() +
+                "\nMinimum Quantity : " + this.getProductMin() + "\n" +
                 "\nPen - Specific Data ----------------------------" +
                 "\n" +
                 "\nColor            : " + this.getColor() +

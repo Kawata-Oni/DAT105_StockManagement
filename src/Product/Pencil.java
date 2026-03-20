@@ -16,6 +16,11 @@ public class Pencil extends WritingTool {
         return grade;
     }
 
+    // method setter
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
     @Override
     public String toString() {
         return "Pencil - Basic Data ----------------------------------" +
@@ -25,7 +30,7 @@ public class Pencil extends WritingTool {
                 "\nPrice            : " + this.getProductPrice() +
                 "\nCurrent Quantity : " + this.getProductQuantity() +
                 "\nMaximum Quantity : " + this.getProductMax() +
-                "\nMinimum Quantity : " + this.getProductMin() +
+                "\nMinimum Quantity : " + this.getProductMin() + "\n" +
                 "\nPencil - Specific Data ----------------------------" +
                 "\n" +
                 "\nColor            : " + this.getColor() +

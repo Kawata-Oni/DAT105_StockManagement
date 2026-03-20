@@ -18,20 +18,18 @@ public class AddWindowForm extends JFrame {
     private MainWindowForm mainWindowForm;
     private Management management;
 
-    // constructor + การทำงานใน Add
     public AddWindowForm(MainWindowForm mainWindowForm, Management management) {
-        // เพื่อให้รู้ว่าหน้าต่างหลักคืออันไหน และเชื่อมกับ ArrayList ของ management
         this.mainWindowForm = mainWindowForm;
         this.management = management;
 
-        // setup window
+       
         setTitle("Add Window");
         setContentPane(add_form);
         setSize(400, 350);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // group JRadioButton
+        
         ButtonGroup group = new ButtonGroup();
         group.add(choicePencil);
         group.add(choicePen);
@@ -39,52 +37,44 @@ public class AddWindowForm extends JFrame {
         group.add(choiceReportPaper);
         group.add(choiceGeneral);
 
-        // ปุ่ม cancel
-        btnCancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        // cancel button
+        btnCancel.addActionListener(e -> dispose());
 
-        // ปุ่ม confirm
-        btnConfirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // เช็คว่าได้เลือกมั้ย
-                if (!choicePencil.isSelected() && !choicePen.isSelected() &&
-                        !choiceNotebook.isSelected() && !choiceReportPaper.isSelected() &&
-                        !choiceGeneral.isSelected()) {
+        // confirm button
+        btnConfirm.addActionListener(e -> handleConfirm());
+    }
 
-                    JOptionPane.showMessageDialog(null, "Please select an item!");
-                    return;
-                }
+    
+    private void handleConfirm() {
 
-                // เช็คว่าเลือกอะไร แล้วสร้าง obj ของสินค้าด้วย class นั้นๆ
-                // ส่ง String ของ category ที่เลือกเข้าไปเพื่อให้หน้าต่าง input รู้ว่าเลือกอะไรไป
-                if (choicePencil.isSelected()) {
-                    InputBasicData inputForm = new InputBasicData("Pencil", mainWindowForm, management, AddWindowForm.this);
-                    inputForm.setVisible(true);
+        String selectedCategory = getSelectedCategory();
 
-                } else if (choicePen.isSelected()) {
-                    InputBasicData inputForm = new InputBasicData("Pen", mainWindowForm, management, AddWindowForm.this);
-                    inputForm.setVisible(true);
+        
+        if (selectedCategory == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Please select an item!",
+                    "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
-                } else if (choiceNotebook.isSelected()) {
-                    InputBasicData inputForm = new InputBasicData("Notebook", mainWindowForm, management, AddWindowForm.this);
-                    inputForm.setVisible(true);
+        
+        InputBasicData inputForm =
+                new InputBasicData(selectedCategory, mainWindowForm, management, this);
 
-                } else if (choiceReportPaper.isSelected()) {
-                    InputBasicData inputForm = new InputBasicData("Report Paper", mainWindowForm, management, AddWindowForm.this);
-                    inputForm.setVisible(true);
+        inputForm.setVisible(true);
 
-                } else if (choiceGeneral.isSelected()) {
-                    InputBasicData inputForm = new InputBasicData("General Stationery", mainWindowForm, management, AddWindowForm.this);
-                    inputForm.setVisible(true);
+        
+        setVisible(false);
+    }
 
-                }
-                dispose();
-            }
-        });
+  
+    private String getSelectedCategory() {
+        if (choicePencil.isSelected()) return "Pencil";
+        if (choicePen.isSelected()) return "Pen";
+        if (choiceNotebook.isSelected()) return "Notebook";
+        if (choiceReportPaper.isSelected()) return "Report Paper";
+        if (choiceGeneral.isSelected()) return "General Stationery";
+        return null;
     }
 }
