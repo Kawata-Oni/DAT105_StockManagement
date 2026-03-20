@@ -87,7 +87,10 @@ public class MainWindowForm extends JFrame{
                 String id = JOptionPane.showInputDialog(null,"Enter Product ID: ");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (id == null) return;
+=======
+>>>>>>> parent of 60315c1 (Update GUI)
 =======
 >>>>>>> parent of 60315c1 (Update GUI)
 =======
