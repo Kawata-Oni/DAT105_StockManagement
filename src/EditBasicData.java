@@ -1,7 +1,9 @@
 import Product.Management;
-import Product.*;
+import Product.Product;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class EditBasicData extends JFrame {
 
@@ -18,203 +20,86 @@ public class EditBasicData extends JFrame {
     private String productId;
 
     public EditBasicData(MainWindowForm mainWindowForm, Management management, String productId) {
-
         this.mainWindowForm = mainWindowForm;
         this.management = management;
         this.productId = productId;
 
-        setTitle("Edit Product - " + productId);
         setContentPane(editBasicData);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        pack();
+        setTitle("Edit Product");
+        setSize(400, 300);
         setLocationRelativeTo(null);
 
-        
+        // ================= LOAD DATA =================
         Product p = management.findProduct(productId);
-
-        if (p == null) {
-            JOptionPane.showMessageDialog(this,
-                    "ไม่มี ID นี้ในระบบ",
+        if (p != null) {
+            editName.setText(p.getProductName());
+            editPrice.setText(String.valueOf(p.getProductPrice()));
+            editMax.setText(String.valueOf(p.getProductMax()));
+            editMin.setText(String.valueOf(p.getProductMin()));
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Product not found",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             dispose();
             return;
         }
 
-        
-        editName.setText(p.getProductName());
-        editPrice.setText(String.valueOf(p.getProductPrice()));
-        editMax.setText(String.valueOf(p.getProductMax()));
-        editMin.setText(String.valueOf(p.getProductMin()));
+        // ================= CONFIRM =================
+        btnConfirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        btnCancel.addActionListener(e -> dispose());
+                String name = editName.getText().trim();
+                String priceStr = editPrice.getText().trim();
+                String maxStr = editMax.getText().trim();
+                String minStr = editMin.getText().trim();
 
-        btnConfirm.addActionListener(e -> handleConfirm());
-    }
+                if (name.isEmpty() || priceStr.isEmpty() || maxStr.isEmpty() || minStr.isEmpty()) {
+                    JOptionPane.showMessageDialog(null,
+                            "Please fill all fields",
+                            "Warning",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
 
-    
-    private void handleConfirm() {
+                try {
+                    double price = Double.parseDouble(priceStr);
+                    int max = Integer.parseInt(maxStr);
+                    int min = Integer.parseInt(minStr);
 
-      
-        Product p = management.findProduct(productId);
-        if (p == null) {
-            JOptionPane.showMessageDialog(this,
-                    "Product not found!",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            dispose();
-            return;
-        }
+                    if (min > max) {
+                        JOptionPane.showMessageDialog(null,
+                                "Min cannot be greater than Max",
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
 
-        String nameStr = editName.getText().trim();
-        String priceStr = editPrice.getText().trim();
-        String maxStr = editMax.getText().trim();
-        String minStr = editMin.getText().trim();
+                    // update product
+                    management.updateProduct(productId, name, price, max, min);
 
-       
-        if (nameStr.isEmpty() || priceStr.isEmpty() || maxStr.isEmpty() || minStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "Please fill in all fields.",
-                    "Missing Information",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
+                    JOptionPane.showMessageDialog(null,
+                            "Product updated successfully");
 
-        double newPrice;
-        int newMax, newMin;
+                    mainWindowForm.updateTable();
+                    dispose();
 
-        try {
-            newPrice = Double.parseDouble(priceStr);
-            newMax = Integer.parseInt(maxStr);
-            newMin = Integer.parseInt(minStr);
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Invalid number format!",
-                    "Input Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        
-        if (newPrice < 0) {
-            showError("Price cannot be negative!");
-            return;
-        }
-
-        if (newMax < 0 || newMin < 0) {
-            showError("Max and Min cannot be negative!");
-            return;
-        }
-
-        if (newMax < newMin) {
-            showError("Max cannot be less than Min!");
-            return;
-        }
-
-        
-        int choice = JOptionPane.showConfirmDialog(this,
-                "Do you want to edit specific data for this product?",
-                "Edit Specific Data",
-                JOptionPane.YES_NO_OPTION);
-
-        if (choice == JOptionPane.YES_OPTION) {
-            if (!editSpecificData(p)) return;
-        }
-
-        
-        management.editProduct(productId, nameStr, newPrice, newMin, newMax);
-        mainWindowForm.updateTable();
-
-        JOptionPane.showMessageDialog(this,
-                "Product updated successfully!",
-                "Success",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        dispose();
-    }
-
-    
-    private boolean editSpecificData(Product p) {
-        try {
-            if (p instanceof Pencil) {
-                Pencil pencil = (Pencil) p;
-
-                String color = JOptionPane.showInputDialog(this, "Enter Color:", pencil.getColor());
-                if (color == null) return false;
-
-                String grade = JOptionPane.showInputDialog(this, "Enter Grade:", pencil.getGrade());
-                if (grade == null) return false;
-
-                pencil.setColor(color);
-                pencil.setGrade(grade);
-
-            } else if (p instanceof Pen) {
-                Pen pen = (Pen) p;
-
-                String color = JOptionPane.showInputDialog(this, "Enter Color:", pen.getColor());
-                if (color == null) return false;
-
-                String tipStr = JOptionPane.showInputDialog(this, "Enter Tip Size:", pen.getTipSize());
-                if (tipStr == null) return false;
-                double tip = Double.parseDouble(tipStr);
-
-                String penType = JOptionPane.showInputDialog(this, "Enter Pen Type:", pen.getPenType());
-                if (penType == null) return false;
-
-                pen.setColor(color);
-                pen.setTipSize(tip);
-                pen.setPenType(penType);
-
-            } else if (p instanceof Notebook) {
-                Notebook nb = (Notebook) p;
-
-                String size = JOptionPane.showInputDialog(this, "Enter Size:", nb.getSize());
-                if (size == null) return false;
-
-                int gsm = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter GSM:", nb.getGsm()));
-                int pages = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Pages:", nb.getNumberOfPages()));
-
-                nb.setSize(size);
-                nb.setGsm(gsm);
-                nb.setNumberOfPages(pages);
-
-            } else if (p instanceof ReportPaper) {
-                ReportPaper rp = (ReportPaper) p;
-
-                String size = JOptionPane.showInputDialog(this, "Enter Size:", rp.getSize());
-                if (size == null) return false;
-
-                int gsm = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter GSM:", rp.getGsm()));
-                int sheets = Integer.parseInt(JOptionPane.showInputDialog(this, "Enter Sheets:", rp.getNumberOfSheets()));
-
-                rp.setSize(size);
-                rp.setGsm(gsm);
-                rp.setNumberOfSheets(sheets);
-
-            } else if (p instanceof GeneralStationery) {
-                GeneralStationery gs = (GeneralStationery) p;
-
-                String type = JOptionPane.showInputDialog(this, "Enter Type:", gs.getStationeryType());
-                if (type == null) return false;
-
-                gs.setStationeryType(type);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null,
+                            "Invalid number format",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
+        });
 
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Invalid number format in specific data!",
-                    "Input Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-        return true;
-    }
-
-    private void showError(String msg) {
-        JOptionPane.showMessageDialog(this,
-                msg,
-                "Validation Error",
-                JOptionPane.WARNING_MESSAGE);
+        // ================= CANCEL =================
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 }
