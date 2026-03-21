@@ -62,7 +62,7 @@
         </constraints>
         <properties>
           <font name="Arial Rounded MT Bold"/>
-          <text value="Other than the choices"/>
+          <text value="Other than the choices (General Stationery)"/>
         </properties>
       </component>
       <component id="1df24" class="javax.swing.JButton" binding="btnConfirm">
