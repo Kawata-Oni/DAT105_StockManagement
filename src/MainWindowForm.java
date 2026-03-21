@@ -1,5 +1,4 @@
-import Product.Management;
-import Product.Product;
+import Product.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -311,12 +310,12 @@ public class MainWindowForm extends JFrame{
 
     // setup ค่าเริ่มต้นของตาราง basicData
     private void setupTable() {
-        String[] columnNames = {"ID", "Name", "Price", "Quantity", "Max", "Min", "Status"}; // array ของ column ตาราง
+        String[] columnNames = {"Category", "ID", "Name", "Price", "Quantity", "Max", "Min", "Status"}; // array ของ column ตาราง
         DefaultTableModel model = new DefaultTableModel(null, columnNames); // DefaultTableModel ใช้ตั้งค่าตาราง
         basicData.setModel(model);
 
         // --- ส่วนที่เพิ่มเข้ามาเพื่อจัดการสี ---
-        int statusColumnIndex = 6; // คอลัมน์ Status คือ Index ที่ 6
+        int statusColumnIndex = 7; // คอลัมน์ Status คือ Index ที่ 7
         basicData.getColumnModel().getColumn(statusColumnIndex).setCellRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value,
@@ -362,8 +361,21 @@ public class MainWindowForm extends JFrame{
         DefaultTableModel model = (DefaultTableModel) basicData.getModel();
         model.setRowCount(0);
 
+        String cate;
         for (Product p : management.getProducts()) {
+            if (p instanceof Pencil) {
+                cate = "Pencil";
+            } else if (p instanceof Pen) {
+                cate = "Pen";
+            } else if (p instanceof Notebook) {
+                cate = "Notebook";
+            } else if (p instanceof ReportPaper) {
+                cate = "Report";
+            } else if (p instanceof GeneralStationery) {
+                cate = "General";
+            } else {cate = "";}
             Object[] rowData = {
+                    cate,
                     p.getProductId(),
                     p.getProductName(),
                     p.getProductPrice(),
