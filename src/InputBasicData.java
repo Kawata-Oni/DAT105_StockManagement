@@ -51,7 +51,7 @@ public class InputBasicData extends JFrame {
                 String idStr = typeId.getText().trim();
                 String nameStr = typeName.getText().trim();
                 String priceStr = typePrice.getText().trim();
-                String qtyStr = typeCurQty.getText();
+                String qtyStr = typeCurQty.getText().trim();
                 String maxStr = typeMax.getText().trim();
                 String minStr = typeMin.getText().trim();
 
@@ -155,71 +155,135 @@ public class InputBasicData extends JFrame {
                 Product newProduct = null;
 
                 // รับข้อมูลเฉพาะ ==============================================================
-                try {
-                    if (productType.equals("Pencil")) {
-                        String color = JOptionPane.showInputDialog(null, "Enter Color:");
-                        if (color == null) return;
+                if (productType.equals("Pencil")) {
+                    String color = JOptionPane.showInputDialog(null, "Enter Color:", "");
+                    if (color == null) return;
 
-                        String grade = JOptionPane.showInputDialog(null, "Enter Pencil Grade (e.g., HB, 2B):");
-                        if (grade == null) return;
+                    String grade = JOptionPane.showInputDialog(null, "Enter Pencil Grade (e.g., HB, 2B):", "");
+                    if (grade == null) return;
 
-                        // สร้าง Object
-                        newProduct = new Pencil(productId, productName, productPrice, productQuantity, productMax, productMin, color, grade);
-                    } else if (productType.equals("Pen")) {
-                        String color = JOptionPane.showInputDialog(null, "Enter Color:");
-                        if (color == null) return;
+                    newProduct = new Pencil(productId, productName, productPrice, productQuantity, productMax, productMin, color, grade);
 
-                        String tipSizeStr = JOptionPane.showInputDialog(null, "Enter Tip Size (e.g., 0.5):");
-                        if (tipSizeStr == null) return;
-                        double tipSize = Double.parseDouble(tipSizeStr);
+                } else if (productType.equals("Pen")) {
+                    String color = JOptionPane.showInputDialog(null, "Enter Color:", "");
+                    if (color == null) return;
 
-                        String penType = JOptionPane.showInputDialog(null, "Enter Pen Type (e.g., Gel, Ballpoint):");
-                        if (penType == null) return;
+                    double tipSize = 0.0;
+                    String tipSizeStr = "";
+                    while (true) {
+                        tipSizeStr = JOptionPane.showInputDialog(null, "Enter Tip Size (e.g., 0.5):", tipSizeStr);
+                        if (tipSizeStr == null) return; // กด Cancel
 
-                        // สร้าง Object
-                        newProduct = new Pen(productId, productName, productPrice, productQuantity, productMax, productMin, color, tipSize, penType);
-                    } else if (productType.equals("Notebook")) {
-                        String size = JOptionPane.showInputDialog(null, "Enter Paper Size (e.g., A4, B5):");
-                        if (size == null) return;
+                        if (tipSizeStr.trim().isEmpty()) {
+                            tipSize = 0.0; // ปล่อยว่างให้เป็น 0.0
+                            break;
+                        }
 
-                        String gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):");
-                        if (gsmStr == null) return;
-                        int gsm = Integer.parseInt(gsmStr);
+                        try {
+                            tipSize = Double.parseDouble(tipSizeStr);
+                            break;
 
-                        String pagesStr = JOptionPane.showInputDialog(null, "Enter Number of Pages:");
-                        if (pagesStr == null) return;
-                        int pages = Integer.parseInt(pagesStr);
-
-                        // สร้าง Object
-                        newProduct = new Notebook(productId, productName, productPrice, productQuantity, productMax, productMin, size, gsm, pages);
-                    } else if (productType.equals("Report Paper")) {
-                        String size = JOptionPane.showInputDialog(null, "Enter Paper Size (e.g., A4):");
-                        if (size == null) return;
-
-                        String gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):");
-                        if (gsmStr == null) return;
-                        int gsm = Integer.parseInt(gsmStr);
-
-                        String sheetsStr = JOptionPane.showInputDialog(null, "Enter Number of Sheets:");
-                        if (sheetsStr == null) return;
-                        int sheets = Integer.parseInt(sheetsStr);
-
-                        // สร้าง Object
-                        newProduct = new ReportPaper(productId, productName, productPrice, productQuantity, productMax, productMin, size, gsm, sheets);
-                    } else if (productType.equals("General Stationery")) {
-                        String statType = JOptionPane.showInputDialog(null, "Enter Stationery Type (e.g., Ruler, Eraser):");
-                        if (statType == null) return;
-
-                        // สร้าง Object
-                        newProduct = new GeneralStationery(productId, productName, productPrice, productQuantity, productMax, productMin, statType);
+                        } catch (NumberFormatException ex) { // ถ้าแปลง tipSizeStr เป็น Double ไม่ได้
+                            JOptionPane.showMessageDialog(null,
+                                    "Invalid format! Please enter numbers only.",
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
 
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null,
-                            "Invalid number format in extra details. Please try again.",
-                            "Input Error",
-                            JOptionPane.ERROR_MESSAGE);
-                    return;
+                    String penType = JOptionPane.showInputDialog(null, "Enter Pen Type (e.g., Gel, Ballpoint):", "");
+                    if (penType == null) return;
+
+                    newProduct = new Pen(productId, productName, productPrice, productQuantity, productMax, productMin, color, tipSize, penType);
+
+                } else if (productType.equals("Notebook")) {
+                    String size = JOptionPane.showInputDialog(null, "Enter Paper Size (e.g., A4, B5):", "");
+                    if (size == null) return;
+
+                    int gsm = 0;
+                    String gsmStr = "";
+                    while (true) {
+                        gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):", gsmStr);
+                        if (gsmStr == null) return;
+
+                        if (gsmStr.trim().isEmpty()) {
+                            gsm = 0; // ปล่อยว่างให้เป็น 0
+                            break;
+                        }
+                        try {
+                            gsm = Integer.parseInt(gsmStr);
+                            break;
+                        } catch (NumberFormatException ex) { // ถ้าแปลง gsmStr เป็น int ไม่ได้
+                            JOptionPane.showMessageDialog(null, "Invalid format! Please enter numbers only.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
+                    int pages = 0;
+                    String pagesStr = "";
+                    while (true) {
+                        pagesStr = JOptionPane.showInputDialog(null, "Enter Number of Pages:", pagesStr);
+                        if (pagesStr == null) return;
+
+                        if (pagesStr.trim().isEmpty()) {
+                            pages = 0; // ปล่อยว่างให้เป็น 0
+                            break;
+                        }
+                        try {
+                            pages = Integer.parseInt(pagesStr);
+                            break;
+                        } catch (NumberFormatException ex) { // ถ้าแปลง pagesStr เป็น int ไม่ได้
+                            JOptionPane.showMessageDialog(null, "Invalid format! Please enter numbers only.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
+                    newProduct = new Notebook(productId, productName, productPrice, productQuantity, productMax, productMin, size, gsm, pages);
+
+                } else if (productType.equals("Report Paper")) {
+                    String size = JOptionPane.showInputDialog(null, "Enter Paper Size (e.g., A4):", "");
+                    if (size == null) return;
+
+                    int gsm = 0;
+                    String gsmStr = "";
+                    while (true) {
+                        gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):", gsmStr);
+                        if (gsmStr == null) return;
+
+                        if (gsmStr.trim().isEmpty()) {
+                            gsm = 0; // ปล่อยว่างให้เป็น 0
+                            break;
+                        }
+                        try {
+                            gsm = Integer.parseInt(gsmStr);
+                            break;
+                        } catch (NumberFormatException ex) { // ถ้าแปลง gsmStr เป็น int ไม่ได้
+                            JOptionPane.showMessageDialog(null, "Invalid format! Please enter numbers only.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
+                    int sheets = 0;
+                    String sheetsStr = "";
+                    while (true) {
+                        sheetsStr = JOptionPane.showInputDialog(null, "Enter Number of Sheets:", sheetsStr);
+                        if (sheetsStr == null) return;
+
+                        if (sheetsStr.trim().isEmpty()) {
+                            sheets = 0; // ปล่อยว่างให้เป็น 0
+                            break;
+                        }
+                        try {
+                            sheets = Integer.parseInt(sheetsStr);
+                            break;
+                        } catch (NumberFormatException ex) { // ถ้าแปลง sheetsStr เป็น int ไม่ได้
+                            JOptionPane.showMessageDialog(null, "Invalid format! Please enter numbers only.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+
+                    newProduct = new ReportPaper(productId, productName, productPrice, productQuantity, productMax, productMin, size, gsm, sheets);
+
+                } else if (productType.equals("General Stationery")) {
+                    String statType = JOptionPane.showInputDialog(null, "Enter Stationery Type (e.g., Ruler, Eraser):", "");
+                    if (statType == null) return;
+
+                    newProduct = new GeneralStationery(productId, productName, productPrice, productQuantity, productMax, productMin, statType);
                 }
 
                 // ถ้ามีข้อมูลใน newProduct ก็เพิ่มลง ArrayList
