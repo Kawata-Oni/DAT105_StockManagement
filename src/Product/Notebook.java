@@ -25,16 +25,16 @@ public class Notebook extends PaperProduct {
     public String toString() {
         return "Notebook - Basic Data ----------------------------------" +
                 "\n" +
-                "\nProduct ID       : " + this.getProductId() +
-                "\nProduct Name     : " + this.getProductName() +
-                "\nPrice            : " + this.getProductPrice() +
+                "\nProduct ID : " + this.getProductId() +
+                "\nProduct Name : " + this.getProductName() +
+                "\nPrice : " + this.getProductPrice() +
                 "\nCurrent Quantity : " + this.getProductQuantity() +
                 "\nMaximum Quantity : " + this.getProductMax() +
                 "\nMinimum Quantity : " + this.getProductMin() + "\n" +
                 "\nNotebook - Specific Data ----------------------------" +
                 "\n" +
-                "\nSize             : " + this.getSize() +
-                "\nGSM              : " + this.getGsm() +
-                "\nNumber of Pages  : " + this.getNumberOfPages();
+                "\nSize : " + this.getSize() +
+                "\nGSM : " + this.getGsm() +
+                "\nNumber of Pages : " + this.getNumberOfPages();
     }
 }

@@ -25,15 +25,15 @@ public class Pencil extends WritingTool {
     public String toString() {
         return "Pencil - Basic Data ----------------------------------" +
                 "\n" +
-                "\nProduct ID       : " + this.getProductId() +
-                "\nProduct Name     : " + this.getProductName() +
-                "\nPrice            : " + this.getProductPrice() +
+                "\nProduct ID : " + this.getProductId() +
+                "\nProduct Name : " + this.getProductName() +
+                "\nPrice : " + this.getProductPrice() +
                 "\nCurrent Quantity : " + this.getProductQuantity() +
                 "\nMaximum Quantity : " + this.getProductMax() +
                 "\nMinimum Quantity : " + this.getProductMin() + "\n" +
                 "\nPencil - Specific Data ----------------------------" +
                 "\n" +
-                "\nColor            : " + this.getColor() +
-                "\nGrade            : " + this.getGrade();
+                "\nColor : " + this.getColor() +
+                "\nGrade : " + this.getGrade();
     }
 }
