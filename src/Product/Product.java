@@ -2,7 +2,9 @@ package Product;
 
 import java.io.Serializable;
 
-public abstract class Product implements Serializable {
+public abstract class Product implements Serializable { // interface ที่ไม่มีอะไรต้อง override
+    /* ส่งสัญญาณบอกระบบของ Java ว่า
+    "อ็อบเจกต์ของคลาสนี้ อนุญาตให้แปลงร่างเป็น Byte เพื่อบันทึกลงไฟล์ได้นะ */
 
     private String productId;
     private String productName;

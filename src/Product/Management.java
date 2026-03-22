@@ -24,7 +24,7 @@ public class Management {
     }
 
     public boolean checkProductId(String productId) {
-        return findProduct(productId) != null;
+        return findProduct(productId) != null; // เจอ return true
     }
 
     // ================= ADD =================
@@ -168,9 +168,9 @@ public class Management {
 
         try {
 
-            ObjectOutputStream out =
+            ObjectOutputStream out = // สร้างหรือเปิดไฟล์
                     new ObjectOutputStream(
-                            new FileOutputStream("products.dat"));
+                            new FileOutputStream("products.dat")); // แปลงไฟล์เป็น byte stream
 
             out.writeObject(products);
             out.close();
@@ -193,9 +193,9 @@ public class Management {
                 return;
             }
 
-            ObjectInputStream in =
+            ObjectInputStream in = // เปิดไฟล์
                     new ObjectInputStream(
-                            new FileInputStream(file));
+                            new FileInputStream(file)); // แปลง Byte Stream เป็น Java
 
             products = (ArrayList<Product>) in.readObject();
 

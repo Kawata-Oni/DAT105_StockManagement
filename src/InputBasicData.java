@@ -22,7 +22,7 @@ public class InputBasicData extends JFrame {
     private MainWindowForm mainWindowForm;
     private AddWindowForm addWindowForm;
 
-    // contribute
+    // constructor
     public InputBasicData(String productType, MainWindowForm mainWindowForm, Management management, AddWindowForm addWindowForm) {
         this.productType = productType;
         this.mainWindowForm = mainWindowForm;
@@ -156,7 +156,7 @@ public class InputBasicData extends JFrame {
 
                 // รับข้อมูลเฉพาะ ==============================================================
                 if (productType.equals("Pencil")) {
-                    String color = JOptionPane.showInputDialog(null, "Enter Color:", "");
+                    String color = JOptionPane.showInputDialog(null, "Enter Color (e.g., Black, Red):", "");
                     if (color == null) return;
 
                     String grade = JOptionPane.showInputDialog(null, "Enter Pencil Grade (e.g., HB, 2B):", "");
@@ -165,7 +165,7 @@ public class InputBasicData extends JFrame {
                     newProduct = new Pencil(productId, productName, productPrice, productQuantity, productMax, productMin, color, grade);
 
                 } else if (productType.equals("Pen")) {
-                    String color = JOptionPane.showInputDialog(null, "Enter Color:", "");
+                    String color = JOptionPane.showInputDialog(null, "Enter Color (e.g., Blue, Red, Black):", "");
                     if (color == null) return;
 
                     double tipSize = 0.0;
