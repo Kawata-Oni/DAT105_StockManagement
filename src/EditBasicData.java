@@ -107,9 +107,19 @@ public class EditBasicData extends JFrame {
                             String color = JOptionPane.showInputDialog(null, "Enter Color (e.g., Blue, Red, Black):", pen.getColor());
                             if (color == null) return;
 
-                            String tipSizeStr = JOptionPane.showInputDialog(null, "Enter Tip Size (e.g., 0.5, 0.7):", pen.getTipSize());
-                            if (tipSizeStr == null) return;
-                            double tipSize = Double.parseDouble(tipSizeStr);
+                            double tipSize = 0.0;
+                            String tipSizeStr = pen.getTipSize() + ""; // นำค่าเดิมมาแปลงเป็น String เพื่อเตรียมแสดง
+                            while (true) {
+                                tipSizeStr = JOptionPane.showInputDialog(null, "Enter Tip Size (e.g., 0.5, 0.7):", tipSizeStr);
+                                if (tipSizeStr == null) return; // ดักปุ่ม Cancel
+
+                                try {
+                                    tipSize = Double.parseDouble(tipSizeStr);
+                                    break; // แปลงสำเร็จ หลุด loop
+                                } catch (NumberFormatException ex) {
+                                    JOptionPane.showMessageDialog(null, "Invalid format! Please enter a number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
 
                             String penType = JOptionPane.showInputDialog(null, "Enter Pen Type (e.g., Gel, Ballpoint):", pen.getPenType());
                             if (penType == null) return;
@@ -123,13 +133,33 @@ public class EditBasicData extends JFrame {
                             String size = JOptionPane.showInputDialog(null, "Enter Paper Size (e.g., A4, B5):", nb.getSize());
                             if (size == null) return;
 
-                            String gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):", nb.getGsm());
-                            if (gsmStr == null) return;
-                            int gsm = Integer.parseInt(gsmStr);
+                            int gsm = 0;
+                            String gsmStr = nb.getGsm() + "";
+                            while (true) {
+                                gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):", gsmStr);
+                                if (gsmStr == null) return;
 
-                            String pagesStr = JOptionPane.showInputDialog(null, "Enter Number of Pages:", nb.getNumberOfPages());
-                            if (pagesStr == null) return;
-                            int pages = Integer.parseInt(pagesStr);
+                                try {
+                                    gsm = Integer.parseInt(gsmStr);
+                                    break;
+                                } catch (NumberFormatException ex) {
+                                    JOptionPane.showMessageDialog(null, "Invalid format! Please enter a whole number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+
+                            int pages = 0;
+                            String pagesStr = nb.getNumberOfPages() + "";
+                            while (true) {
+                                pagesStr = JOptionPane.showInputDialog(null, "Enter Number of Pages:", pagesStr);
+                                if (pagesStr == null) return;
+
+                                try {
+                                    pages = Integer.parseInt(pagesStr);
+                                    break;
+                                } catch (NumberFormatException ex) {
+                                    JOptionPane.showMessageDialog(null, "Invalid format! Please enter a whole number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
 
                             nb.setSize(size);
                             nb.setGsm(gsm);
@@ -140,13 +170,33 @@ public class EditBasicData extends JFrame {
                             String size = JOptionPane.showInputDialog(null, "Enter Paper Size (e.g., A4):", rp.getSize());
                             if (size == null) return;
 
-                            String gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):", rp.getGsm());
-                            if (gsmStr == null) return;
-                            int gsm = Integer.parseInt(gsmStr);
+                            int gsm = 0;
+                            String gsmStr = rp.getGsm() + "";
+                            while (true) {
+                                gsmStr = JOptionPane.showInputDialog(null, "Enter Paper GSM (e.g., 70, 80):", gsmStr);
+                                if (gsmStr == null) return;
 
-                            String sheetsStr = JOptionPane.showInputDialog(null, "Enter Number of Sheets:", rp.getNumberOfSheets());
-                            if (sheetsStr == null) return;
-                            int sheets = Integer.parseInt(sheetsStr);
+                                try {
+                                    gsm = Integer.parseInt(gsmStr);
+                                    break;
+                                } catch (NumberFormatException ex) {
+                                    JOptionPane.showMessageDialog(null, "Invalid format! Please enter a whole number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
+
+                            int sheets = 0;
+                            String sheetsStr = rp.getNumberOfSheets() + "";
+                            while (true) {
+                                sheetsStr = JOptionPane.showInputDialog(null, "Enter Number of Sheets:", sheetsStr);
+                                if (sheetsStr == null) return;
+
+                                try {
+                                    sheets = Integer.parseInt(sheetsStr);
+                                    break;
+                                } catch (NumberFormatException ex) {
+                                    JOptionPane.showMessageDialog(null, "Invalid format! Please enter a whole number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+                                }
+                            }
 
                             rp.setSize(size);
                             rp.setGsm(gsm);
